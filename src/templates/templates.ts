@@ -4,16 +4,16 @@ import { BaseTemplate } from "./baseTemplate"
 
 
 @ComplectionTemplate(
-    { language: "go", name: "for", description: "", body: "for {{expr}} {\n{{indent}}$1\n}\n" },
-    { language: "go", name: "fori", description: "", body: "for i := 0; i < {{expr}}; i++ {\n{{indent}}$1\n}\n" },
-    { language: "go", name: "forr", description: "", body: "for $1,$2 := range {{expr}} {\n{{indent}}$0\n}\n" },
-    { language: "go", name: "if", description: "", body: "if {{expr}} {\n{{indent}}$1\n}\n" },
-    { language: "go", name: "len", description: "", body: "len({{expr}})" },
+    { language: "go", name: "for", description: "for expr", body: "for {{expr}} {\n{{indent}}$1\n}\n" },
+    { language: "go", name: "fori", description: "for index", body: "for i := 0; i < {{expr}}; i++ {\n{{indent}}$1\n}\n" },
+    { language: "go", name: "forr", description: "for range", body: "for ${1:i},${2:v} := range {{expr}} {\n{{indent}}$0\n}\n" },
+    { language: "go", name: "if", description: "if", body: "if {{expr}};$1 {\n{{indent}}$2\n}\n" },
+    { language: "go", name: "len", description: "len", body: "len({{word}})" },
 
-    { language: "javascript", name: "fori", description: "", body: "for (let i = 0; i < {{expr}}.length; i++) {\n{{indent}}const item = {{expr}}[i];$0\n}" },
-    { language: "javascript", name: "forin", description: "", body: "for (var key in {{expr}}) {\n{{indent}} if (Object.hasOwnProperty.call({{expr}}, key)) {\n{{indent}}{{indent}}$0\n{{indent}}}\n}" },
-    { language: "javascript", name: "forof", description: "", body: "for (let obj of {{expr}}) {\n{{indent}}$0\n}" },
-    { language: "javascript", name: "if", description: "", body: "if ({{expr}}) {\n{{indent}}\${0}\n}" },
+    { language: "javascript", name: "fori", description: "", body: "for (let i = 0; i < {{word}}.length; i++) {\n{{indent}}const item = {{expr}}[i];$0\n}" },
+    { language: "javascript", name: "forin", description: "", body: "for (var key in {{word}}) {\n{{indent}} if (Object.hasOwnProperty.call({{expr}}, key)) {\n{{indent}}{{indent}}$0\n{{indent}}}\n}" },
+    { language: "javascript", name: "forof", description: "", body: "for (let obj of {{word}}) {\n{{indent}}$0\n}" },
+    { language: "javascript", name: "if", description: "", body: "if ({{word}}) {\n{{indent}}\${0}\n}" },
     { language: "javascript", name: "else", description: "", body: "if (!{{expr}}) {\n${{indent}}\${0}\n}" },
     { language: "javascript", name: "not", description: "", body: "!{{expr}}" },
     { language: "javascript", name: "return", description: "", body: "return {{expr}}" },

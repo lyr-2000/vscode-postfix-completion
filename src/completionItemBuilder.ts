@@ -9,6 +9,7 @@ export class CompletionItemBuilder {
   private line: number
   private firstNonhitespaceCharacterIndex: number
   private dotIdx: number
+  private wordIdx: number
   constructor(name: string, inlineText: string, line: number, firstNonhitespaceCharacterIndex: number, dotIdx: number) {
     this.item = new vscode.CompletionItem(name, vscode.CompletionItemKind.Snippet)
     this.item.detail = COMPLETION_ITEM_TITLE
@@ -17,6 +18,7 @@ export class CompletionItemBuilder {
     this.code = inlineText.substr(firstNonhitespaceCharacterIndex)
     this.line = line
     this.dotIdx = dotIdx
+    this.wordIdx = this.getWordIdx(this.code)
   }
 
   public static create = (label: string, inlineText: string, line: number, firstNonhitespaceCharacterIndex: number, dotIdx: number) => new CompletionItemBuilder(label, inlineText, line, firstNonhitespaceCharacterIndex, dotIdx)
@@ -34,13 +36,31 @@ export class CompletionItemBuilder {
     this.item.insertText = insertText
     return this
   }
+  private getWordIdx(w: string): number {
+    let d = w.lastIndexOf(' ')
+    // if (d < 0) {
+    //   return d
+    // }
+    // return w.substr(d+1)
+    return d
+  }
+  private getInsertedText(replacement: string, escapedCode: string): string {
+    let firstState = replacement.replace(new RegExp('{{expr}}', 'g'), escapedCode).replace(new RegExp('{{indent}}', 'g'), getIndentCharacters())
+    let tmp = firstState.replace(new RegExp('{{word}}', 'g'), escapedCode.substring(this.wordIdx+1))
+    if (tmp != firstState && this.wordIdx > 0) {
+      // update replace index 
+      this.firstNonhitespaceCharacterIndex = this.wordIdx + 1
+      return tmp
+    }
+    return firstState
 
+  }
   public replace = (replacement: string, useSnippets?: boolean): CompletionItemBuilder => {
     if (useSnippets) {
       const escapedCode = this.code.replace('$', '\\$')
-      this.item.insertText = new vscode.SnippetString(replacement.replace(new RegExp('{{expr}}', 'g'), escapedCode).replace(new RegExp('{{indent}}', 'g'), getIndentCharacters()))
+      this.item.insertText = new vscode.SnippetString(this.getInsertedText(replacement, escapedCode))
     } else {
-      this.item.insertText = replacement.replace(new RegExp('{{expr}}', 'g'), this.code).replace(new RegExp('{{indent}}', 'g'), getIndentCharacters())
+      this.item.insertText = this.getInsertedText(replacement, this.code)
     }
 
 

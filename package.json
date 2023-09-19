@@ -1,9 +1,9 @@
 {
-  "name": "vscode-postfix-completion",
-  "displayName": "vscode-postfix-completion",
+  "name": "postfix-completion",
+  "displayName": "postfix-completion2",
   "description": "vscode postfix completion",
-  "publisher": "gorpher",
-  "repository": {"url": "https://github.com/gorpher/vscode-postfix-completion"},
+  "publisher": "lyr-2000",
+  "repository": {"url": "https://github.com/lyr-2000/vscode-postfix-completion"},
   "icon": "images/logo.png",
   "version": "0.0.1",
   "engines": {

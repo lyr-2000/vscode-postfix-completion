@@ -9,9 +9,24 @@ let currentSuggestion: any = undefined
 export class PostfixCompletionProvider implements vsc.CompletionItemProvider {
   private templates: IPostfixTemplate[] = []
   constructor(language: string) {
+    let custom = loadCustomTemplates(language)
+    let final = []
+    let mp = new Set<string>()
+    for (let t of custom) {
+      if (!mp.has(t.name)) {
+        final.push(t)
+        mp.add(t.name)
+      }
+    }
+    let curr = loadBuiltinTemplates(language)
+    for (let t of curr) {
+      if (!mp.has(t.name)) {
+        final.push(t)
+        mp.add(t.name)
+      }
+    }
     this.templates = [
-      ...loadBuiltinTemplates(language),
-      ...loadCustomTemplates(language)
+      ...final,
     ]
   }
 

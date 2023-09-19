@@ -13,20 +13,20 @@ Postfix templates for TypeScript/JavaScript/GO/Rust/More.
 
 ```json
 {
-   "postfix_complection.templates": [
-      {
-         "name": ":",
-         "language":"go",
-         "description": "Assigns the expression to a new variable by using :=.",
-         "body": "$1 := {{expr}}\n$0"
-     },
-     {
-         "name": "if",
-         "language":"javascript",
-         "description": "Creates if statement from given boolean expression.",
-         "body": "if ({{expr}}) {\n{{indent}}${0}\n}"
-      },
-   ],
+	"postfix_complection.templates": [
+		{
+			"name": "len",
+			"language": "go",
+			"description": "Assigns the expression to a new variable by using :=.",
+			"body": "$1 len({{word}}) $0"
+		},
+		{
+			"name": ":",
+			"language": "go",
+			"description": "Assigns the expression to a new variable by using :=.",
+			"body": "$1 := {{expr}}\n$0"
+		},
+	],
 
 }
 
