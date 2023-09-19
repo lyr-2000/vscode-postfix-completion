@@ -13,15 +13,19 @@ export class PostfixCompletionProvider implements vsc.CompletionItemProvider {
     let final = []
     let mp = new Set<string>()
     for (let t of custom) {
+      // @ts-ignore
       if (!mp.has(t.name)) {
         final.push(t)
+        // @ts-ignore
         mp.add(t.name)
       }
     }
     let curr = loadBuiltinTemplates(language)
     for (let t of curr) {
+      // @ts-ignore
       if (!mp.has(t.name)) {
         final.push(t)
+        // @ts-ignore
         mp.add(t.name)
       }
     }
@@ -46,7 +50,7 @@ export class PostfixCompletionProvider implements vsc.CompletionItemProvider {
     try {
       return this.templates
         .filter(t => t.canUse(lineText))
-        .map(t => t.buildCompletionItem(lineText, position.line,line.firstNonWhitespaceCharacterIndex, dotIdx))
+        .map(t => t.buildCompletionItem(lineText, position.line, line.firstNonWhitespaceCharacterIndex, dotIdx))
     } catch (err) {
       console.error('Error while building postfix autocomplete items:')
       console.error(err)
