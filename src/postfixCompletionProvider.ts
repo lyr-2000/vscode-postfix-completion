@@ -17,7 +17,7 @@ export class PostfixCompletionProvider implements vsc.CompletionItemProvider {
       // @ts-ignore
       if (!mp.has(t.name)) {
         final.push(t)
-            // @ts-ignore
+        // @ts-ignore
         mp.add(t.name)
       }
     }
@@ -26,7 +26,7 @@ export class PostfixCompletionProvider implements vsc.CompletionItemProvider {
       // @ts-ignore
       if (!mp.has(t.name)) {
         final.push(t)
-            // @ts-ignore
+        // @ts-ignore
         mp.add(t.name)
       }
     }
