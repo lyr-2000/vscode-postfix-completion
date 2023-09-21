@@ -18,7 +18,7 @@ Postfix templates for TypeScript/JavaScript/GO/Rust/More.
 			"name": "len",
 			"language": "go",
 			"description": "Assigns the expression to a new variable by using :=.",
-			"body": "$1 len({{word}}) $0"
+			"body": "$1 len({{word}}) \n{{indent}}$0"
 		},
 		{
 			"name": ":",

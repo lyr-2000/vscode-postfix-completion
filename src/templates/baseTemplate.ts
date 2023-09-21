@@ -23,7 +23,7 @@ export abstract class BaseTemplate implements IPostfixTemplate {
       return CompletionItemBuilder
         .create(this.name, inlineText, line, firstNonhitespaceCharacterIndex, dotIdx)
         .description(this.description)
-        .example(this.body)
+        // .example(this.body)
         .replace(this.body, true)
         .build()
     }

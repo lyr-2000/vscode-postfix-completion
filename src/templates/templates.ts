@@ -8,7 +8,7 @@ import { BaseTemplate } from "./baseTemplate"
     { language: "go", name: "fori", description: "for index", body: "for i := 0; i < {{expr}}; i++ {\n{{indent}}$1\n}\n" },
     { language: "go", name: "forr", description: "for range", body: "for ${1:i},${2:v} := range {{expr}} {\n{{indent}}$0\n}\n" },
     { language: "go", name: "if", description: "if", body: "if {{expr}};$1 {\n{{indent}}$2\n}\n" },
-    { language: "go", name: "len", description: "len", body: "len({{word}})" },
+    { language: "go", name: "len", description: "len", body: "len({{word}}) $1" },
 
     { language: "javascript", name: "fori", description: "", body: "for (let i = 0; i < {{word}}.length; i++) {\n{{indent}}const item = {{expr}}[i];$0\n}" },
     { language: "javascript", name: "forin", description: "", body: "for (var key in {{word}}) {\n{{indent}} if (Object.hasOwnProperty.call({{expr}}, key)) {\n{{indent}}{{indent}}$0\n{{indent}}}\n}" },

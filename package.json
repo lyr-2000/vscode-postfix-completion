@@ -5,7 +5,7 @@
   "publisher": "lyr-2000",
   "repository": {"url": "https://github.com/lyr-2000/vscode-postfix-completion"},
   "icon": "images/logo.png",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "engines": {
     "vscode": "^1.60.0"
   },
